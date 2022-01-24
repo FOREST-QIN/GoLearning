@@ -1,7 +1,23 @@
 package twentyTwo
 
 func subarraySum(nums []int, k int) int {
+	res := 0
+	sum := 0
+	dict := make(map[int]int)
+	dict[0] = 1
+	for _, num := range nums {
+		sum += num
+		if count, ok := dict[sum-k]; ok {
+			res += count
+		}
+		if count, ok := dict[sum]; ok {
+			dict[sum] = count + 1
+		} else {
+			dict[sum] = 1
+		}
 
+	}
+	return res
 }
 
 func lengthOfLongestSubstring(s string) int {
